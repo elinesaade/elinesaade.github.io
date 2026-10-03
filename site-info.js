@@ -10,7 +10,7 @@ window.SITE_INFO = {
   intro:     "I invent worlds people want to step into.",
 
   instagram: "",   // e.g. "https://instagram.com/elinesaade"
-  linkedin:  "",   // e.g. "https://www.linkedin.com/in/elinesaade"
-  website:   "",   // e.g. "https://elinesaade.github.io"
+  linkedin:  "https://www.linkedin.com/in/eline-saade-270546282/",   // e.g. "https://www.linkedin.com/in/elinesaade"
+  website:   "https://elinesaade.github.io",   // e.g. "https://elinesaade.github.io"
   email:     ""    // e.g. "hello@elinesaade.com"  (optional)
 };
