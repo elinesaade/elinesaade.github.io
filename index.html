@@ -873,7 +873,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   const closeSheet=()=>{sheet.hidden=true;document.querySelectorAll('.cast figure').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-expanded','false')})};
   document.getElementById('sheetClose').addEventListener('click',closeSheet);
   document.querySelectorAll('.cast figure').forEach(f=>{const t=()=>{if(f.classList.contains('on')){closeSheet();return}closeSheet();f.classList.add('on');f.setAttribute('aria-expanded','true');
-      shImg.src='assets/bu3/sk_'+f.dataset.sk+'.webp';shImg.alt=f.dataset.name+' character sketches';document.getElementById('sheetName').textContent=f.dataset.name;document.getElementById('sheetAge').textContent=f.dataset.age;sheet.hidden=false;sheet.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'})};
+      shImg.src='assets/bu3/sk_'+f.dataset.sk+'.webp';shImg.alt=f.dataset.name+' character sketches';document.getElementById('sheetName').textContent=f.dataset.name;document.getElementById('sheetAge').textContent=f.dataset.age;const castEl=f.closest('.cast');if(getComputedStyle(castEl).gridTemplateColumns.split(' ').length<2){f.after(sheet);sheet.style.marginTop='0'}else{castEl.after(sheet);sheet.style.marginTop=''}sheet.hidden=false;sheet.scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'})};
     f.addEventListener('click',t);f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}})});
 
   // compare
@@ -1094,7 +1094,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   addEventListener('hashchange',route);route();
 })();
 </script>
-<script src="site-info.js?v=20261005125604"></script>
+<script src="site-info.js?v=20261005130930"></script>
 <script>
 (function(){var I=window.SITE_INFO||{};
 document.querySelectorAll('[data-link]').forEach(function(a){var k=a.dataset.link,v=(I[k]||'').trim();if(!v)return;
