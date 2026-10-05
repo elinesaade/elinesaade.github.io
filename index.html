@@ -262,14 +262,15 @@ body[data-theme="bu3"] .lb-bar button{background:rgba(20,45,85,.85)}
 .tv img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;border:10px solid #0D1A30;box-shadow:0 0 0 2px #3B5F92,0 26px 60px rgba(5,20,50,.55);cursor:zoom-in}
 .tv figcaption{font-family:var(--f-hand);color:#A9CCFF;font-size:1.4rem;line-height:1.1;text-align:center}
 .console-spin{position:relative;display:grid;justify-items:center}
-.console-spin img{width:min(100%,380px);height:auto;position:relative;z-index:1}
+.console-spin img{width:min(100%,330px);height:auto;position:relative;z-index:1}
 .console-floor{width:60%;max-width:260px;height:26px;margin-top:-18px;border-radius:50%;background:radial-gradient(closest-side,rgba(5,20,50,.55),transparent)}
 /* collab */
 .collab-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);align-items:center;margin-top:12px}
-.pad img{width:100%;max-width:470px;margin-inline:auto;transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.pad img{width:100%;max-width:420px;margin-inline:auto;transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
 .pad img:hover{transform:rotate(-4deg) scale(1.04)}
 .collab-bottom{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(16px,3vw,40px);align-items:center;margin-top:clamp(24px,4vw,48px)}
-@media (max-width:760px){.collab-top,.collab-bottom{grid-template-columns:1fr}}
+@media (max-width:760px){.collab-top,.collab-bottom{grid-template-columns:1fr}.console-spin img{width:min(58vw,230px)}.pad img{max-width:min(74vw,290px)}
+  .gallery{grid-template-columns:minmax(0,1fr)}.gallery img,.gallery .w2,.gallery .w3,.gallery .w4{grid-column:auto;height:auto}}
 .case-wrap,.cd-wrap{display:grid;justify-items:center;gap:12px}
 .cd-wrap{padding:24px 8px}
 .case3d{--h:clamp(300px,36vw,440px);--w:calc(var(--h)*.8155);--d:calc(var(--h)*.0927);width:var(--w);height:var(--h);perspective:1600px;cursor:grab;touch-action:pan-y;user-select:none;margin-block:10px 64px}
@@ -310,7 +311,7 @@ body[data-theme="bu3"] #starCur{--c1:#F2F9FF;--c2:200,232,255;--c3:110,184,242;-
 .proto-h{font-size:var(--s2)}
 .proto-ctrl{display:flex;gap:8px;flex-wrap:wrap}
 .proto-ctrl .btn{cursor:pointer;font:inherit;font-weight:600;background:rgba(255,255,255,.45);color:#15613D;border-color:rgba(21,97,61,.25)}
-.phone{width:min(86vw,340px);aspect-ratio:393/852;border-radius:52px;padding:12px;background:#111;box-shadow:0 0 0 2px #2b2b2b,0 0 0 9px #1b1b1b,0 40px 80px rgba(21,60,30,.45);position:relative}
+.phone{width:min(86vw,340px,calc((100svh - 150px) * 393 / 852));aspect-ratio:393/852;border-radius:52px;padding:12px;background:#111;box-shadow:0 0 0 2px #2b2b2b,0 0 0 9px #1b1b1b,0 40px 80px rgba(21,60,30,.45);position:relative}
 .phone::before{content:"";position:absolute;top:22px;left:50%;width:30%;height:22px;transform:translateX(-50%);background:#000;border-radius:20px;z-index:3}
 .phone-screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:#fff}
 .phone-screen.scroll{overflow-y:auto;scrollbar-width:none}
@@ -544,9 +545,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     <div class="free glow-peach levitate"><img src="assets/sq_meditate.webp" alt="Red Squichi character meditating, floating" style="max-width:380px" loading="lazy"><span class="floor" aria-hidden="true"></span></div>
   </div>
   <div class="split">
-    <div class="free glow-lav"><img src="assets/img46.webp" alt="Blue Squichi character with a flower, animated" style="max-width:320px" loading="lazy"></div>
     <div class="block"><span class="eyebrow">Idea</span><h2>Characters as emotional anchors.</h2>
       <p class="prose">The characters aren't decoration. They encourage, reassure, celebrate progress and guide the user through small everyday actions, giving the app presence and personality.</p></div>
+    <div class="free glow-lav"><img src="assets/img46.webp" alt="Blue Squichi character with a flower, animated" style="max-width:320px" loading="lazy"></div>
   </div>
   <div class="block">
     <span class="eyebrow">Identity</span><h2>Logo &amp; app icon</h2>
@@ -745,8 +746,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       <input id="cmp" type="range" min="0" max="100" value="50">
     </div>
     <div class="gallery" style="margin-top:16px">
-      <img class="w4" src="assets/bu3/fin_monster.webp" alt="Siblings facing a giant glowing dream creature" loading="lazy" data-zoom>
-      <img class="w2" src="assets/bu3/fin_woven.webp" alt="A woven landscape of colourful threads" loading="lazy" data-zoom>
+      <img class="w4" src="assets/bu3/fin_monster.webp" width="2000" height="1125" alt="Siblings facing a giant glowing dream creature" loading="lazy" data-zoom>
+      <img class="w2" src="assets/bu3/fin_woven.webp" width="2000" height="1125" alt="A woven landscape of colourful threads" loading="lazy" data-zoom>
     </div>
   </div>
 
@@ -1093,7 +1094,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   addEventListener('hashchange',route);route();
 })();
 </script>
-<script src="site-info.js?v=20261005124532"></script>
+<script src="site-info.js?v=20261005125604"></script>
 <script>
 (function(){var I=window.SITE_INFO||{};
 document.querySelectorAll('[data-link]').forEach(function(a){var k=a.dataset.link,v=(I[k]||'').trim();if(!v)return;
