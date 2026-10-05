@@ -6,32 +6,33 @@
 <title>Eline Saade</title>
 <meta name="description" content="Eline Saade — art director, illustrator & visual storyteller.">
 <meta name="theme-color" content="#1a0b33">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Caveat+Brush&display=swap">
 <style>
-:root{--bg:#1a0b33;--card:rgba(42,21,73,.72);--edge:rgba(185,140,255,.28);--ink:#f6efff;--muted:#c8b6e8;--sun:#ffd76a;--lilac:#b98cff}
+@font-face{font-family:"Metropolis";src:url(assets/fonts/Metropolis-Regular.otf) format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Metropolis";src:url(assets/fonts/Metropolis-Medium.otf) format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Metropolis";src:url(assets/fonts/Metropolis-SemiBold.otf) format("opentype");font-weight:600;font-display:swap}
+@font-face{font-family:"Metropolis";src:url(assets/fonts/Metropolis-ExtraBold.otf) format("opentype");font-weight:800;font-display:swap}
+:root{--bg:#1a0b33;--card:rgba(42,21,73,.72);--edge:rgba(185,140,255,.28);--ink:#f6efff;--muted:#c8b6e8;--sun:#CDB8FF;--lilac:#b98cff}
 *{box-sizing:border-box;margin:0}
 [hidden]{display:none!important}
 html,body{min-height:100%}
-body{background:radial-gradient(120% 80% at 50% 0%,#3a1c6b 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;display:grid;place-items:center;padding:calc(28px + env(safe-area-inset-top,0px)) 16px calc(28px + env(safe-area-inset-bottom,0px));min-height:100svh;overflow-x:hidden}
+body{background:radial-gradient(120% 80% at 50% 0%,#3a1c6b 0%,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font-family:"Metropolis",system-ui,sans-serif;display:grid;place-items:center;padding:calc(28px + env(safe-area-inset-top,0px)) 16px calc(28px + env(safe-area-inset-bottom,0px));min-height:100svh;overflow-x:hidden}
 canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .card{position:relative;z-index:1;width:min(100%,400px);background:var(--card);border:1px solid var(--edge);border-radius:28px;padding:28px 22px 24px;text-align:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 30px 80px rgba(0,0,0,.35)}
 .avatar{width:190px;height:auto;display:block;margin:-6px auto 6px;filter:drop-shadow(0 10px 24px rgba(185,140,255,.45))}
 @media (prefers-reduced-motion:no-preference){.avatar{animation:bob 4s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px) rotate(-2deg)}}}
-h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:2.1rem;letter-spacing:-.02em;line-height:1.05}
+h1{font-family:"Metropolis",system-ui,sans-serif;font-weight:800;font-size:2.1rem;letter-spacing:-.02em;line-height:1.05}
 .role{margin-top:8px;color:var(--muted);font-size:1rem;line-height:1.4}
-.hand{font-family:"Caveat Brush","Segoe Print",cursive;color:var(--sun);font-size:1.45rem;margin:14px 0 20px;transform:rotate(-2deg)}
+.hand{font-family:"Metropolis",system-ui,sans-serif;color:var(--sun);font-size:1.1rem;margin:12px 0 20px}
 .links{display:grid;gap:10px}
 .links a{display:flex;align-items:center;gap:14px;padding:15px 18px;border-radius:16px;border:1px solid var(--edge);background:rgba(255,255,255,.04);color:var(--ink);text-decoration:none;font-weight:600;font-size:1.02rem;transition:transform .2s,border-color .2s,background .2s}
-.links a:hover,.links a:focus-visible{transform:translateY(-2px);border-color:var(--sun);background:rgba(255,215,106,.08);outline:none}
+.links a:hover,.links a:focus-visible{transform:translateY(-2px);border-color:var(--sun);background:rgba(205,184,255,.1);outline:none}
 .links a svg{width:22px;height:22px;flex:none}
 .links a span{flex:1;text-align:left}
 .links a small{color:var(--muted);font-weight:500;font-size:.8rem}
 .links a.soon{border-style:dashed;opacity:.6;pointer-events:none}
 .links a.main{background:var(--sun);color:#2a1549;border-color:var(--sun)}
 .links a.main small{color:#5a3f80}
-.save{margin-top:16px;background:none;border:0;color:var(--lilac);font:600 .9rem "Instrument Sans",sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px}
+.save{margin-top:16px;background:none;border:0;color:var(--lilac);font:600 .9rem "Metropolis",system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px}
 </style>
 </head>
 <body>
