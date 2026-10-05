@@ -53,7 +53,8 @@ main{padding-block:clamp(28px,5vw,64px) clamp(56px,8vw,100px)}
 .hero{position:relative;margin-inline:calc(50% - 50vw);margin-top:calc(-1 * clamp(28px,5vw,64px));min-height:calc(100svh - 62px);display:grid;align-items:center;justify-items:start;text-align:left;background:radial-gradient(70% 90% at 75% 40%,rgba(120,70,210,.45),transparent 70%),radial-gradient(60% 70% at 10% 90%,rgba(70,30,140,.5),transparent 70%);overflow:hidden;padding:clamp(40px,7vw,90px) max(var(--g),calc((100vw - var(--wrap))/2 + var(--g)))}
 .hero .txt{position:relative;z-index:2;display:grid;gap:22px;justify-items:start;max-width:660px;pointer-events:none}
 .hero .txt a,.hero .txt button{pointer-events:auto}
-.hero h1{font-family:"Caveat Brush","Segoe Print","Bradley Hand",cursive;font-weight:400;letter-spacing:0;line-height:.92;font-size:clamp(3.2rem,1.6rem + 6.6vw,8.4rem);max-width:12ch;transform:rotate(-2deg);transform-origin:left center}
+@font-face{font-family:"Metropolis";src:url(assets/fonts/Metropolis-ExtraBold.otf) format("opentype");font-weight:800;font-style:normal;font-display:swap}
+.hero h1{font-family:"Metropolis","Bricolage Grotesque",system-ui,sans-serif;font-weight:800;letter-spacing:-.035em;line-height:.98;font-size:clamp(2.6rem,1.2rem + 5.4vw,7rem);max-width:13ch}
 .hero h1 em{font-style:normal;padding-right:.06em}
 .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--sun),#FFB4E0 55%,var(--glow));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .lead{max-width:40ch}
