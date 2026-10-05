@@ -55,15 +55,17 @@ h1{font-family:"Metropolis",system-ui,sans-serif;font-weight:800;font-size:2.1re
 <script>
 (function(){
   var I=window.SITE_INFO||{};
+  function nb(t){t=String(t).trim();var i=t.lastIndexOf(' ');return i>0?t.slice(0,i)+'\u00a0'+t.slice(i+1):t}
+  ['role','intro'].forEach(function(k){if(!I[k])I[k]=document.getElementById(k).textContent});I.role=nb(I.role);I.intro=nb(I.intro);
   if(I.name){document.getElementById('name').textContent=I.name;document.title=I.name}
   if(I.role)document.getElementById('role').textContent=I.role;
   if(I.intro)document.getElementById('intro').textContent=I.intro;
   document.querySelectorAll('[data-link]').forEach(function(a){
     var k=a.dataset.link,v=(I[k]||'').trim(),s=a.querySelector('small');
-    if(!v){a.classList.add('soon');a.removeAttribute('href');return}
+    if(!v){if(k==='website'||k==='email'){a.hidden=true;return}a.classList.add('soon');a.removeAttribute('href');return}
     a.hidden=false;
     if(k==='email'){a.href='mailto:'+v;s.textContent=v}
-    else{a.href=v;a.target='_blank';a.rel='noopener';s.textContent=v.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}
+    else{a.href=v;a.target='_blank';a.rel='noopener';s.textContent='↗'}
   });
   document.getElementById('save').onclick=function(){
     var n=(I.name||'Eline Saade'),p=n.split(' ');

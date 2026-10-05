@@ -440,6 +440,20 @@ body[data-theme="bu3"] #starCur{--c1:#F2F9FF;--c2:200,232,255;--c3:110,184,242;-
 .links a small{font-family:var(--f-body);font-weight:500;font-size:var(--s-1);color:var(--muted)}
 .links a[data-placeholder]{border-style:dashed}
 .links a[hidden]{display:none}
+.mailbox{display:grid;gap:14px;padding:clamp(18px,3vw,28px);border:1px solid var(--edge);border-radius:22px;background:rgba(42,21,73,.45)}
+.mailbox h2{font-size:var(--s1);font-weight:700;letter-spacing:-.01em}
+.mailbox .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:600px){.mailbox .row{grid-template-columns:1fr}}
+.mailbox label{display:grid;gap:6px;font-size:var(--s-1);font-weight:600;color:var(--muted)}
+.mailbox input,.mailbox textarea{font:inherit;font-size:1rem;font-weight:400;color:var(--lilac);background:rgba(17,7,32,.6);border:1px solid var(--edge);border-radius:12px;padding:12px 14px;width:100%;resize:vertical;min-width:0}
+.mailbox input:focus,.mailbox textarea:focus{outline:none;border-color:var(--sun);box-shadow:0 0 0 3px rgba(205,184,255,.18)}
+.mailbox .send{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.mailbox .btn{cursor:pointer;font:inherit;font-weight:600}
+.mailbox .alt{color:var(--muted);font-size:var(--s-1)}
+.mailbox .alt a{color:var(--lilac)}
+.mailbox .copy{font:inherit;font-size:.78rem;font-weight:600;margin-left:6px;padding:3px 10px;border-radius:999px;border:1px solid var(--edge);background:none;color:var(--muted);cursor:pointer}
+.mailbox .copy:hover{color:var(--lilac);border-color:var(--sun)}
+.mailbox .note{color:var(--sun);font-size:var(--s-1);min-height:1em}
 .links a:hover{border-color:var(--sun);transform:translateX(6px)}
 
 footer{border-top:1px solid rgba(185,140,255,.15)}
@@ -772,11 +786,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     <h1>Let's talk.</h1>
     <!-- These links are filled in from site-info.js — edit that file, not this one -->
     <div class="links">
-      <a href="#contact" data-link="linkedin" data-placeholder>LinkedIn <small>Link to add</small></a>
-      <a href="#contact" data-link="instagram" data-placeholder>Instagram <small>Link to add</small></a>
-      <a href="#contact" data-link="website" data-placeholder>Website <small>Link to add</small></a>
-      <a href="#contact" data-link="email" data-placeholder hidden>Email <small>Link to add</small></a>
+      <a href="#contact" data-link="linkedin" data-placeholder>LinkedIn <small>soon</small></a>
+      <a href="#contact" data-link="instagram" data-placeholder>Instagram <small>soon</small></a>
     </div>
+    <form class="mailbox" id="mailForm" novalidate>
+      <h2>Send me a message</h2>
+      <div class="row">
+        <label>Your name<input name="name" type="text" autocomplete="name" required></label>
+        <label>Your email<input name="from" type="email" autocomplete="email" required></label>
+      </div>
+      <label>Message<textarea name="msg" rows="5" required></textarea></label>
+      <div class="send">
+        <button class="btn primary" type="submit">Send ✉</button>
+        <span class="alt">or write to <a data-mail href="#contact">her email</a> <button type="button" class="copy" id="copyMail">copy</button></span>
+      </div>
+      <p class="note" id="mailNote" role="status"></p>
+    </form>
   </div>
 </section>
 </main>
@@ -1072,9 +1097,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 <script>
 (function(){var I=window.SITE_INFO||{};
 document.querySelectorAll('[data-link]').forEach(function(a){var k=a.dataset.link,v=(I[k]||'').trim();if(!v)return;
- if(k==='email'){a.href='mailto:'+v;a.querySelector('small').textContent=v}
- else{a.href=v;a.target='_blank';a.rel='noopener';a.querySelector('small').textContent=v.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}
+ a.href=v;a.target='_blank';a.rel='noopener';a.querySelector('small').textContent='↗';
  a.removeAttribute('data-placeholder');a.hidden=false;});
+var mail=(I.email||'').trim(),f=document.getElementById('mailForm');
+document.querySelectorAll('[data-mail]').forEach(function(a){if(mail){a.href='mailto:'+mail;a.textContent=mail}});
+if(f){if(!mail)f.hidden=true;
+ f.addEventListener('submit',function(e){e.preventDefault();var E=f.elements,n=E['name'].value.trim(),fr=E['from'].value.trim(),m=E['msg'].value.trim(),note=document.getElementById('mailNote');
+  if(!n||!m){note.textContent='Please add your name and a message.';return}
+  var body=m+'\n\n— '+n+(fr?' ('+fr+')':'');
+  location.href='mailto:'+mail+'?subject='+encodeURIComponent('Hello from '+n)+'&body='+encodeURIComponent(body);
+  note.textContent='Your email app should open with the message ready — just press send.'});
+ var cp=document.getElementById('copyMail');cp&&cp.addEventListener('click',function(){
+  (navigator.clipboard?navigator.clipboard.writeText(mail):Promise.reject()).then(function(){cp.textContent='copied ✓';setTimeout(function(){cp.textContent='copy'},1800)},function(){cp.textContent=mail})});}
 })();
 </script>
 
