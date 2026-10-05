@@ -66,6 +66,15 @@ main{padding-block:clamp(28px,5vw,64px) clamp(56px,8vw,100px)}
 .sticker{position:absolute;z-index:3;cursor:grab;touch-action:none;user-select:none;-webkit-user-drag:none;filter:drop-shadow(0 12px 24px rgba(0,0,0,.45));transition:filter .2s}
 .sticker:active{cursor:grabbing;filter:drop-shadow(0 22px 34px rgba(0,0,0,.6)) brightness(1.08)}
 .sticker img{pointer-events:none;width:100%}
+.hero .btn.primary{background:#CDB8FF;border-color:#CDB8FF;color:#1E0B3A}
+.hero .btn.primary:hover{background:#DCCBFF;border-color:#DCCBFF}
+.nw{white-space:nowrap}
+p,li,h1,h2,h3,h4,figcaption,blockquote,.lead,.eyebrow,small{text-wrap:pretty}
+.bubble{position:absolute;z-index:5;top:-2%;right:34%;margin:0;padding:10px 16px;border-radius:18px;background:#F6F0FF;color:#2A1549;font:400 clamp(.82rem,.75rem + .3vw,1rem)/1.2 "Metropolis","Instrument Sans",system-ui,sans-serif;letter-spacing:.01em;white-space:nowrap;pointer-events:none;box-shadow:0 8px 22px rgba(10,4,20,.35);transform-origin:85% 100%;opacity:0;transform:scale(.4);animation:bubblePop 5.2s 1.2s cubic-bezier(.3,1.4,.5,1) forwards}
+.bubble::after{content:"";position:absolute;right:14px;bottom:-9px;width:18px;height:14px;background:inherit;clip-path:polygon(0 0,100% 0,85% 100%)}
+.bubble.gone{display:none}
+@keyframes bubblePop{0%{opacity:0;transform:scale(.4)}9%{opacity:1;transform:scale(1.06)}13%{transform:scale(1)}50%{transform:scale(1) translateY(-3px)}88%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.85) translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.bubble{animation:bubbleFade 5.2s 1.2s forwards}@keyframes bubbleFade{0%,100%{opacity:0;transform:none}8%,88%{opacity:1;transform:none}}}
 .drag-hint{position:absolute;z-index:3;bottom:22px;right:8%;transform:rotate(-3deg);font-size:1.25rem;white-space:nowrap;transition:opacity .4s}
 @media (prefers-reduced-motion:no-preference){
   .sticker .bob{animation:bob 6s ease-in-out infinite}
@@ -449,7 +458,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 <section class="page" data-page="work">
   <div class="hero" id="hero">
     <div class="txt">
-      <span class="eyebrow">Art director · Illustrator · Visual storyteller</span>
+      <span class="eyebrow"><span class="nw">Art director&nbsp;·</span> <span class="nw">Illustrator&nbsp;·</span> <span class="nw">Visual storyteller</span></span>
       <h1><span style="white-space:nowrap">I invent worlds</span> people want to <em>step into.</em></h1>
       <div class="lead hero-about">
         <p>Hi, I'm Eline. I grew up in Lebanon, surrounded by architects and artists, in a home where ideas were constantly being drawn, built and imagined.</p>
@@ -458,8 +467,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
       </div>
       <div class="cta"><a class="btn primary" href="#selected">See the work ↓</a><a class="btn" href="#contact">Let's talk</a></div>
     </div>
-    <div class="sticker big"><div class="bob"><img src="assets/eline_purple.webp" alt="Illustrated Eline drawing on a tablet, in lilac" draggable="false"></div></div>
-    <p class="drag-hint hand" id="hint">psst… drag me around</p>
+    <div class="sticker big"><p class="bubble" id="hint" aria-hidden="true">psst… drag me around</p><div class="bob"><img src="assets/eline_purple.webp" alt="Illustrated Eline drawing on a tablet, in lilac" draggable="false"></div></div>
   </div>
 
   <div class="marquee" aria-hidden="true"><div>
@@ -814,7 +822,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
   hero.querySelectorAll('.sticker').forEach(st=>{
     let ox,oy,sx,sy2,drag=false;
     st.addEventListener('pointerdown',e=>{drag=true;st.setPointerCapture(e.pointerId);const r=st.getBoundingClientRect(),h=hero.getBoundingClientRect();
-      ox=e.clientX;oy=e.clientY;sx=r.left-h.left;sy2=r.top-h.top;Object.assign(st.style,{left:sx+'px',top:sy2+'px',right:'auto',bottom:'auto',zIndex:4});hint.style.opacity=0});
+      ox=e.clientX;oy=e.clientY;sx=r.left-h.left;sy2=r.top-h.top;Object.assign(st.style,{left:sx+'px',top:sy2+'px',right:'auto',bottom:'auto',zIndex:4});hint.classList.add('gone')});
     st.addEventListener('pointermove',e=>{if(!drag)return;const h=hero.getBoundingClientRect(),r=st.getBoundingClientRect();
       let x=sx+e.clientX-ox,y=sy2+e.clientY-oy;x=Math.max(-r.width*.3,Math.min(h.width-r.width*.7,x));y=Math.max(-r.height*.3,Math.min(h.height-r.height*.7,y));
       st.style.left=x+'px';st.style.top=y+'px';st.style.transform='rotate('+Math.max(-14,Math.min(14,(e.movementX||0)*1.5))+'deg)'});
@@ -830,7 +838,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 
   // too much? picker
   const out=document.getElementById('flipOut');
-  document.querySelectorAll('.flip button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.flip button').forEach(x=>x.setAttribute('aria-pressed',x===b));out.textContent=b.dataset.t}));
+  document.querySelectorAll('.flip button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.flip button').forEach(x=>x.setAttribute('aria-pressed',x===b));out.textContent=b.dataset.t;window.noOrphans&&noOrphans(out.parentNode)}));
 
   // unique-corn wall + shuffle
   const ids=[];for(let i=103;i<=139;i++)ids.push(i);
@@ -1078,4 +1086,19 @@ document.querySelectorAll('[data-link]').forEach(function(a){var k=a.dataset.lin
 })();
 </script>
 
+<script>
+(function(){
+  function fix(el){var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null),n,ns=[];
+    while(n=w.nextNode())ns.push(n);
+    var seen=false;
+    for(var k=ns.length-1;k>=0;k--){var t=ns[k].nodeValue;
+      for(var i=t.length-1;i>=0;i--){var sp=/[ \t\n\r]/.test(t[i]);
+        if(!seen){if(!sp&&t[i]!=='\u00a0')seen=true;continue}
+        if(t[i]==='\u00a0')return;
+        if(sp){var j=i;while(j>0&&/[ \t\n\r]/.test(t[j-1]))j--;var tn=ns[k];tn.nodeValue=t.slice(0,j)+'\u00a0'+t.slice(i+1);var pv=tn.previousSibling;if(j===0&&pv&&pv.nodeType===1){var wr=document.createElement('span');wr.className='nw';tn.parentNode.insertBefore(wr,pv);wr.appendChild(pv);wr.appendChild(tn)}return}}}}
+  function run(root){(root||document).querySelectorAll('p,li,h1,h2,h3,h4,figcaption,blockquote,.lead > p,small,b').forEach(function(el){
+    if(el.closest('nav,.marquee,.bubble,button,.btn'))return;if(el.textContent.trim().split(/\s+/).length<3)return;fix(el)})}
+  run();window.noOrphans=run;
+})();
+</script>
 </body></html>
