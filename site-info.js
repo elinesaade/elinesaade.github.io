@@ -12,5 +12,6 @@ window.SITE_INFO = {
   instagram: "",   // e.g. "https://instagram.com/elinesaade"
   linkedin:  "https://www.linkedin.com/in/eline-saade-270546282/",   // e.g. "https://www.linkedin.com/in/elinesaade"
   website:   "",     // e.g. "https://elinesaade.github.io"
-  email:     "elinesaade@hotmail.com"    // e.g. "hello@elinesaade.com"  (optional)
+  email:     "elinesaade@hotmail.com",
+  formspree: "https://formspree.io/f/xrpegznr"     // paste the Formspree form link, e.g. "https://formspree.io/f/abcdwxyz"
 };

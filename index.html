@@ -1104,6 +1104,15 @@ document.querySelectorAll('[data-mail]').forEach(function(a){if(mail){a.href='ma
 if(f){if(!mail)f.hidden=true;
  f.addEventListener('submit',function(e){e.preventDefault();var E=f.elements,n=E['name'].value.trim(),fr=E['from'].value.trim(),m=E['msg'].value.trim(),note=document.getElementById('mailNote');
   if(!n||!m){note.textContent='Please add your name and a message.';return}
+  var fs=(I.formspree||'').trim();
+  if(fs){ if(fs.indexOf('http')!==0)fs='https://formspree.io/f/'+fs;
+   if(!fr||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fr)){note.textContent='Please add your email so I can reply.';return}
+   var btn=f.querySelector('button[type=submit]');btn.disabled=true;note.textContent='Sending…';
+   fetch(fs,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({name:n,email:fr,message:m,_subject:'Portfolio message from '+n})})
+    .then(function(r){if(!r.ok)throw 0;f.reset();note.textContent='Thank you! Your message was sent.'})
+    .catch(function(){note.innerHTML='Hmm, that didn’t go through. Please email me at <a href="mailto:'+mail+'">'+mail+'</a>.'})
+    .then(function(){btn.disabled=false});
+   return}
   var body=m+'\n\n— '+n+(fr?' ('+fr+')':'');
   location.href='mailto:'+mail+'?subject='+encodeURIComponent('Hello from '+n)+'&body='+encodeURIComponent(body);
   note.textContent='Your email app should open with the message ready — just press send.'});
