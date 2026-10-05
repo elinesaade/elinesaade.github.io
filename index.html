@@ -36,6 +36,17 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;backgrou
 header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
 .logo{font-family:var(--f-display);font-weight:800;font-size:1.4rem;text-decoration:none;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
 .logo i{width:10px;height:10px;border-radius:50%;background:var(--sun);box-shadow:0 0 14px var(--sun);display:inline-block}
+nav li.has-dd{position:relative}
+#selected{scroll-margin-top:96px}
+.dd{position:absolute;top:calc(100% + 10px);left:50%;width:300px;display:grid;gap:4px;padding:8px;border-radius:18px;background:rgba(28,13,51,.96);border:1px solid var(--edge);box-shadow:0 18px 40px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translate(-50%,-6px);transition:opacity .18s,transform .18s,visibility 0s .18s;z-index:40}
+.dd::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.dd a{display:flex;align-items:center;gap:12px;padding:8px;border-radius:12px;text-decoration:none;color:var(--lilac);font-weight:400}
+.dd a:hover,.dd a:focus-visible{background:rgba(205,184,255,.12)}
+.dd img{width:54px;height:54px;border-radius:10px;object-fit:cover;flex:none}
+.dd b{display:block;font-weight:700;font-size:.95rem;line-height:1.2}
+.dd small{display:block;color:var(--muted);font-size:.8rem}
+@media (hover:hover){nav li.has-dd:hover .dd,nav li.has-dd:focus-within .dd{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .18s,transform .18s}}
+@media (max-width:520px){.dd{left:auto;right:-60px;transform:translateY(-6px)}nav li.has-dd:hover .dd,nav li.has-dd:focus-within .dd{transform:none}}
 nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
 nav a{display:block;padding:7px 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:var(--s-1);color:var(--muted);transition:color .2s,background .2s}
 nav a:hover{color:var(--lilac)}
@@ -450,10 +461,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 
 <header class="site">
   <div class="wrap">
-    <a class="logo" href="#work"><i></i>Eline</a>
+    <a class="logo" href="#about"><i></i>Eline</a>
     <nav aria-label="Main"><ul>
-      <li><a href="#work" data-nav="work">Work</a></li>
       <li><a href="#about" data-nav="about">About</a></li>
+      <li class="has-dd"><a href="#work" data-nav="work" aria-haspopup="true">Work</a>
+        <div class="dd" role="menu" aria-label="Projects">
+          <a role="menuitem" href="#squichi"><img src="assets/img43.webp" alt="" style="background:#CDEB86;object-fit:contain"><span><b>Squichi</b><small>Wellbeing app</small></span></a>
+          <a role="menuitem" href="#unique-corn"><img src="assets/img113.webp" alt="" style="background:#22103A"><span><b>Unique-corn</b><small>Character series</small></span></a>
+          <a role="menuitem" href="#between-us-three"><img src="assets/img197.webp" alt="" style="background:#2E5583;object-position:40% 50%"><span><b>Between us three</b><small>Co-op game</small></span></a>
+        </div></li>
       <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul></nav>
   </div>
@@ -462,7 +478,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 <main class="wrap">
 
 <!-- HOME -->
-<section class="page" data-page="work">
+<section class="page" data-page="home">
   <div class="hero" id="hero">
     <div class="txt">
       <span class="eyebrow"><span class="nw">Art director&nbsp;·</span> <span class="nw">Illustrator&nbsp;·</span> <span class="nw">Visual storyteller</span></span>
@@ -472,15 +488,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
         <p>Characters, strange little universes and made-up stories have always been part of the picture. What started as endless sketching became a way of thinking, creating and communicating.</p>
         <p>Today I work as an art director, illustrator and visual storyteller.</p>
       </div>
-      <div class="cta"><a class="btn primary" href="#selected">See the work ↓</a><a class="btn" href="#contact">Let's talk</a></div>
+      <div class="cta"><a class="btn primary" href="#work">See the work ↓</a><a class="btn" href="#contact">Let's talk</a></div>
     </div>
     <div class="sticker big"><p class="bubble" id="hint" aria-hidden="true">psst… drag me around</p><div class="bob"><img src="assets/eline_purple.webp" alt="Illustrated Eline drawing on a tablet, in lilac" draggable="false"></div></div>
   </div>
-
-  <div class="marquee" aria-hidden="true"><div>
-    <span>Character design</span><b>✦</b><span>Art direction</span><b>✦</b><span>Game art</span><b>✦</b><span>UX/UI</span><b>✦</b><span>Illustration</span><b>✦</b><span>Visual storytelling</span><b>✦</b>
-    <span>Character design</span><b>✦</b><span>Art direction</span><b>✦</b><span>Game art</span><b>✦</b><span>UX/UI</span><b>✦</b><span>Illustration</span><b>✦</b><span>Visual storytelling</span><b>✦</b>
-  </div></div>
 
   <div class="page" style="gap:24px" id="selected">
     <div class="sec-head"><h2>Selected work</h2><span class="hand" style="font-size:1.3rem">three worlds, pick one →</span></div>
@@ -500,19 +511,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
     </div>
   </div>
 
-  <div class="teaser">
-    <p class="big">Beautiful isn't enough. It should make you <span class="hand">feel</span> something.</p>
-    <div class="pick">
-      <span class="eyebrow">Too much?</span>
-      <div class="flip" role="group" aria-label="Pick one">
-        <button type="button" aria-pressed="false" data-t="Bold is how a character gets remembered. Quiet ones get lost in the scroll.">Too bold?</button>
-        <button type="button" aria-pressed="false" data-t="Strange little universes are where the best stories hide. I grew up drawing them.">Too strange?</button>
-        <button type="button" aria-pressed="false" data-t="Every detail is there for a reason, and some are there to be found on the second look.">Too much?</button>
-      </div>
-      <p class="flip-out" id="flipOut" aria-live="polite">Probably. Better than forgettable.</p>
-      <a class="btn" href="#about">More about me →</a>
-    </div>
-  </div>
 </section>
 
 <!-- SQUICHI -->
@@ -766,32 +764,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 </article>
 
 <!-- ABOUT -->
-<section class="page" data-page="about" hidden>
-  <div class="split">
-    <div class="block">
-      <span class="eyebrow">About</span>
-      <h1 style="font-size:var(--s3)">Hi, I'm Eline.</h1>
-      <div class="prose lead">
-        <p>I grew up in Lebanon, surrounded by architects and artists, in a home where ideas were constantly being drawn, built and imagined.</p>
-        <p>Characters, strange little universes and made-up stories have always been part of the picture. What started as endless sketching became a way of thinking, creating and communicating.</p>
-        <p>Today I work as an art director, illustrator and visual storyteller.</p>
-      </div>
-    </div>
-    <div class="portrait"><img src="assets/eline_purple.webp" alt="Illustrated Eline drawing on a tablet"></div>
-  </div>
-  <div class="values">
-    <div><b>Characters feel alive</b><p>Every character gets a personality before it gets a style.</p></div>
-    <div><b>Colours carry emotion</b><p>Palettes are chosen for how they feel, not just how they look.</p></div>
-    <div><b>Details invite a second look</b><p>Every choice has a purpose, and some are there to be discovered.</p></div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section class="page" data-page="contact" hidden>
   <div class="contact">
     <span class="eyebrow">Contact</span>
-    <h1>Too late, you've reached the end.</h1>
-    <p class="lead">But the conversation didn't. Open to art direction, illustration and character design projects.</p>
+    <h1>Let's talk.</h1>
     <!-- These links are filled in from site-info.js — edit that file, not this one -->
     <div class="links">
       <a href="#contact" data-link="linkedin" data-placeholder>LinkedIn <small>Link to add</small></a>
@@ -803,7 +781,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 </section>
 </main>
 
-<footer><div class="wrap"><span>© Eline</span><span>Art direction · Illustration · Visual storytelling</span></div></footer>
+<footer><div class="wrap"><span>© Eline</span><span>Art director · Illustrator · Visual storyteller</span></div></footer>
 
 <script>
 (()=>{
@@ -1074,12 +1052,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 
   // routing
   const pages=[...document.querySelectorAll('[data-page]')],names=pages.map(p=>p.dataset.page);
-  const route=()=>{const raw=location.hash.slice(1);
-    if(raw==='selected'){delete document.body.dataset.theme;pages.forEach(p=>p.hidden=p.dataset.page!=='work');document.getElementById('selected').scrollIntoView({behavior:reduce?'auto':'smooth'});return}
-    const h=names.includes(raw)?raw:'work';pages.forEach(p=>p.hidden=p.dataset.page!==h);if(h==='squichi')document.body.dataset.theme='squichi';else if(h==='between-us-three')document.body.dataset.theme='bu3';else if(h==='unique-corn')document.body.dataset.theme='uc';else delete document.body.dataset.theme;
-    const key=['squichi','unique-corn','between-us-three'].includes(h)?'work':h;
-    document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===key)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
-    scrollTo({top:0})};
+  const PROJ=['squichi','unique-corn','between-us-three'];
+  const setNav=k=>document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===k)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  let curPage='';
+  const route=()=>{let raw=location.hash.slice(1);if(raw==='selected')raw='work';
+    const h=names.includes(raw)?raw:'home';const changed=h!==curPage;curPage=h;
+    pages.forEach(p=>p.hidden=p.dataset.page!==h);
+    if(h==='squichi')document.body.dataset.theme='squichi';else if(h==='between-us-three')document.body.dataset.theme='bu3';else if(h==='unique-corn')document.body.dataset.theme='uc';else delete document.body.dataset.theme;
+    document.activeElement&&document.activeElement.closest&&document.activeElement.closest('nav')&&document.activeElement.blur();
+    if(h==='home'){const toWork=raw==='work';setNav(toWork?'work':'about');
+      if(toWork){requestAnimationFrame(()=>document.getElementById('selected').scrollIntoView({behavior:(reduce||changed)?'auto':'smooth'}))}else scrollTo({top:0,behavior:changed||reduce?'auto':'smooth'});return}
+    setNav(PROJ.includes(h)?'work':h);scrollTo({top:0})};
+  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{if(a.getAttribute('href')===location.hash)setTimeout(route,0)}));
+  addEventListener('scroll',()=>{if(curPage!=='home')return;const t=document.getElementById('selected').getBoundingClientRect().top;setNav(t<innerHeight*.45?'work':'about')},{passive:true});
   addEventListener('hashchange',route);route();
 })();
 </script>
